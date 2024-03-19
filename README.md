@@ -4,11 +4,10 @@ This project is a Music log Processor that includes Spark-based processing.
 Below are some useful commands for building, testing, and running the application.
 
 ## Prerequisites
-
 Before running this application, ensure that you have the following installed:
 - [JDK 1.8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 - [Scala 2.12](https://www.scala-lang.org/download/2.12.14.html)
-- You need one of the following for executing the Spark Job:
+- You need the following for executing the Spark Job:
     - [Gradle](https://gradle.org/install/) for building and testing the project.
     - [Apache Spark](https://spark.apache.org/downloads.html) for submitting the jar to local Spark cluster processing.
 
