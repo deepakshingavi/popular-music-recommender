@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.dp.spark'
+version = '1.0'
+mainClassName = 'com.dp.example.StartMusicRecommender'
+description = 'Popular music recommender'
+
+ext {
+    javaVersion = JavaVersion.VERSION_1_8
+    scalaBinaryVersion = '_2.12'
+    sparkVersion = '3.4.1'
+    junitVersion = '4.12'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.maven.apache.org/maven2/"
+    }
+}
+
+dependencies {
+    implementation "org.apache.spark:spark-core${scalaBinaryVersion}:${sparkVersion}"
+    implementation "org.apache.spark:spark-sql${scalaBinaryVersion}:${sparkVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+}
+
+sourceSets {
+    main.compileClasspath
+    main.runtimeClasspath
+    test.compileClasspath
+    test.runtimeClasspath
+}
+
+run.classpath = sourceSets.main.runtimeClasspath
+
+jar {
+    duplicatesStrategy = 'EXCLUDE' // or 'PICK_FIRST', 'PICK_LAST', 'WARN'
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+
+}
+
+
