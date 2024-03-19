@@ -12,8 +12,14 @@ import java.util.Map;
 
 public class StartMusicRecommender {
 
+    /**
+     * Entry method expects 4 String arguments
+     * Program args : --input /app/input/ --output /tmp/output/
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+
         if (args.length < 4) {
             System.err.println("Error : Insufficient argument provided.");
             System.exit(1);
@@ -48,15 +54,14 @@ public class StartMusicRecommender {
 
         spark.stop();
 
-        //     Capture the end time
-        long endTime = System.nanoTime();
-
-        // Calculate the execution time in milliseconds
-        long executionTime = (endTime - startTime) / 1000000;
-
-        System.out.println("Execution time: " + executionTime + " milliseconds");
     }
 
+    /**
+     * Gets the top ranked tracked and saves it to output directory path.
+     * @param spark
+     * @param inputDir
+     * @return
+     */
     public static Dataset<Row> getRecommendations(SparkSession spark, String inputDir) {
 
         final DataProcessor dataProcessor = new DataProcessor(spark);
@@ -74,6 +79,11 @@ public class StartMusicRecommender {
         return rankedByTracksDF;
     }
 
+    /**
+     * Parse input program args and creates argument map out of it.
+     * @param args
+     * @return
+     */
     public static Map<String, String> parseArgs(String[] args) {
         Map<String, String> resultMap = new HashMap<>();
         for (int i = 0; i < args.length - 1; i += 2) {

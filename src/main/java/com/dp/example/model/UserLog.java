@@ -3,6 +3,9 @@ package com.dp.example.model;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * DTO class to parse incoming user music logs.
+ */
 public class UserLog {
 
     private String userId;
